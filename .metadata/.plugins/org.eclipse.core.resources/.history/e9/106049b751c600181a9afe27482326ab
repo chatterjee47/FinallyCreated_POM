@@ -1,0 +1,69 @@
+package tests;
+
+import io.qameta.allure.*;
+import pages.LoginPageObject;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+import utils.excelutils.ExcelUtil;
+import utils.extentreports.ExtentTestManager;
+import utils.listeners.TestListener;
+
+
+@Listeners({ TestListener.class })
+@Epic("Regression Tests")
+@Feature("Login Tests")
+public class FlightApplication extends BaseTest {
+
+    @BeforeTest
+    public void setupTestData () throws Exception {
+        //Set Test Data Excel and Sheet
+        System.out.println("************Setup Test Level Data**********");
+        ExcelUtil.setExcelFileSheet("LoginData");
+    }
+
+    @Test (priority = 0, description="Invalid Login Scenario with wrong username and password.")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Test Description: Login test with wrong username and wrong password.")
+    @Story("Invalid username and password login test")
+    public void FlightApplicationDemo () throws Exception {
+    	
+        ExtentTestManager.getTest().setDescription("Invalid Login Scenario with wrong username and password.");
+
+        //*************PAGE INSTANTIATIONS*************
+        LoginPageObject loginpage = new LoginPageObject(driver,wait);
+ 
+
+        //*************PAGE METHODS********************
+        //Open N11 HomePage
+        
+        loginpage.goToN11();
+
+        Thread.sleep(2000);
+        
+        
+        driver.findElement(By.xpath("//input[@value='Find Flights']")).click();
+        Thread.sleep(2000);
+        
+        loginpage.Button_FindFlights();
+        Thread.sleep(2000);
+        //Login to N11 with first row of the login data
+        loginpage.loginToN11(ExcelUtil.getRowData(1));
+
+        //Set test row number to 1
+        ExcelUtil.setRowNumber(1);
+
+        //Set Test Status Column number to 5
+        ExcelUtil.setColumnNumber(5);
+
+        //*************ASSERTIONS***********************
+        Thread.sleep(500);
+        //Verify password message by using excel's 2st row, 5th column
+        //Row and Column numbers starting from 0. Thus we need to write 1 and 4, instead of 2 and 5!
+        loginpage.verifyLoginPassword(ExcelUtil.getCellData(1,4));
+    
+    }
+
+}

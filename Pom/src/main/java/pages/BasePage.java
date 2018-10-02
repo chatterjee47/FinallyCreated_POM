@@ -1,0 +1,62 @@
+package pages;
+
+import java.net.MalformedURLException;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class BasePage {
+    public WebDriver driver;
+    public WebDriverWait wait;
+    
+    //Constructor
+    public BasePage (WebDriver driver, WebDriverWait wait){
+        this.driver = driver;
+        this.wait = wait;
+    }
+
+    //Click Method
+    public void click (By elementLocation) {
+        driver.findElement(elementLocation).click();
+    }
+
+    //Write Text
+    public void writeText (By elementLocation, String text) {
+        driver.findElement(elementLocation).sendKeys(text);
+    }
+
+    //Read Text
+    public String readText (By elementLocation) {
+        return driver.findElement(elementLocation).getText();
+    }
+    
+    public WebDriver setupBrowser(String browser)
+			throws InterruptedException, MalformedURLException {
+		
+		if (browser.equalsIgnoreCase("Firefox")) {
+			System.setProperty("webdriver.gecko.driver", "D:\\HybridFramework\\Pom\\drivers\\geckodriver.exe");
+			WebDriver driver = new FirefoxDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			
+		} else if (browser.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver", "D:\\HybridFramework\\Pom\\drivers\\chromedriver.exe");
+			WebDriver driver = new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			
+		} else if (browser.equalsIgnoreCase("Internet Explorer")) {
+			System.setProperty("webdriver.ie.driver", "D:\\HybridFramework\\Pom\\drivers\\IEDriverServer.exe");
+			WebDriver driver = new InternetExplorerDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		}
+
+		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		return driver;
+	
+	}
+}

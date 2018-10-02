@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="N11 Test Suite" duration-ms="15067" started-at="2018-10-02T15:13:08Z" finished-at="2018-10-02T15:13:23Z">
+    <groups>
+    </groups>
+    <test name="LoginTest" duration-ms="15067" started-at="2018-10-02T15:13:08Z" finished-at="2018-10-02T15:13:23Z">
+      <class name="tests.FlightApplication">
+        <test-method status="PASS" signature="setupTestData()[pri:0, instance:tests.FlightApplication@46e8a539]" name="setupTestData" is-config="true" duration-ms="2109" started-at="2018-10-02T20:43:08Z" finished-at="2018-10-02T20:43:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTestData -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:tests.FlightApplication@46e8a539]" name="setup" is-config="true" duration-ms="5950" started-at="2018-10-02T20:43:10Z" description="Class Level Setup!" finished-at="2018-10-02T20:43:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="FlightApplicationDemo()[pri:0, instance:tests.FlightApplication@46e8a539]" name="FlightApplicationDemo" duration-ms="5260" started-at="2018-10-02T20:43:16Z" description="Flight Application Demo" finished-at="2018-10-02T20:43:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FlightApplicationDemo -->
+        <test-method status="PASS" signature="teardown()[pri:0, instance:tests.FlightApplication@46e8a539]" name="teardown" is-config="true" duration-ms="797" started-at="2018-10-02T20:43:22Z" description="Class Level Teardown!" finished-at="2018-10-02T20:43:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- tests.FlightApplication -->
+    </test> <!-- LoginTest -->
+  </suite> <!-- N11 Test Suite -->
+</testng-results>
